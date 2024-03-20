@@ -39,7 +39,7 @@ export function CommandMenu() {
 						<Link href="/messages">Send Message</Link>
 					</CommandItem>
 					<CommandItem>
-						<Link href="/admin/login">Login</Link>
+						<Link href="/login">Login</Link>
 					</CommandItem>
 				</CommandGroup>
 			</CommandList>

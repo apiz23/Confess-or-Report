@@ -19,6 +19,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Error from "next/error";
+import supabase from "@/lib/supabase";
 
 export default function Message() {
 	const [message, setMessage] = useState<string>();
@@ -30,12 +31,12 @@ export default function Message() {
 			return;
 		}
 		try {
-			// const { data, error } = await supabase
-			// 	.from("message")
-			// 	.insert([{ content: message, category: category }])
-			// 	.select();
+			const { data, error } = await supabase
+				.from("message")
+				.insert([{ content: message, category: category }])
+				.select();
 
-			if (Error) {
+			if (error) {
 				toast.error("Error");
 			}
 			const promise = () =>
@@ -58,7 +59,7 @@ export default function Message() {
 	return (
 		<>
 			<div className="max-w-3xl mx-auto my-44">
-				<Card className="mx-auto py-4 px-7 md:px-14 md:py-8 bg-zinc-300 dark:bg-zinc-900">
+				<Card className="mx-auto py-4 px-7 md:px-14 md:py-8 bg-zinc-300 dark:bg-zinc-800">
 					<CardHeader className="text-center">
 						<CardTitle>
 							<h1>UTHM VOICE</h1>
@@ -70,6 +71,16 @@ export default function Message() {
 					<CardContent className="flex justify-center">
 						<div className="grid w-full max-w-sm items-center gap-1.5">
 							<div className="flex mx-auto mb-5">
+								<select
+									value={category}
+									onChange={(e) => setCategory(Number(e.target.value))}
+									className="w-[250px] rounded-lg"
+								>
+									<option value="">Category</option>
+									<option value="0">FSKTM</option>
+									<option value="1">PPD</option>
+									<option value="2">FTK</option>
+								</select>
 								<div className="ms-5 rounded-full p-2">
 									<TooltipProvider>
 										<Tooltip>
