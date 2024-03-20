@@ -63,7 +63,7 @@ export default function Message() {
 							<h1>UTHM VOICE</h1>
 						</CardTitle>
 						<CardDescription className="text-lg">
-							<p>Submit your confession here 🙊</p>
+							<p>Submit your confession here! 🙊</p>
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="flex justify-center">
