@@ -18,6 +18,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Error from "next/error";
 
 export default function Message() {
 	const [message, setMessage] = useState<string>();
@@ -34,7 +35,7 @@ export default function Message() {
 			// 	.insert([{ content: message, category: category }])
 			// 	.select();
 
-			if (error) {
+			if (Error) {
 				toast.error("Error");
 			}
 			const promise = () =>
