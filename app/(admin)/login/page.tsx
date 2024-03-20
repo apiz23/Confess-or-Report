@@ -10,13 +10,13 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-// import GithubSignInButton from "@/components/GithubSignInButton";
-// import { useSession } from "next-auth/react";
+import GithubSignInButton from "@/components/GithubSignInButton";
+import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 export default function Page() {
-	// const { data: session, status } = useSession();
-	const session = false;
+	const { data: session, status } = useSession();
+	// const session = false;
 
 	const [data, setData] = useState({ email: "", password: "" });
 
@@ -58,13 +58,13 @@ export default function Page() {
 								</div>
 							</CardContent>
 						</form>
-						{/* <CardFooter className="flex justify-center">
+						<CardFooter className="flex justify-center">
 							<GithubSignInButton />
-						</CardFooter> */}
+						</CardFooter>
 					</Card>
 				</div>
 			</div>
 		);
 	}
-	return redirect(`${window.location.origin}/admin/dashboard`);
+	return redirect(`${window.location.origin}/dashboard`);
 }

@@ -39,7 +39,12 @@ export default function Feed() {
 				.from("message")
 				.select("*")
 				.eq("verified", true);
-			setMessages(messagesData || []);
+			if (messagesData) {
+				const sortedMessages = messagesData.sort((a, b) => {
+					return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+				});
+				setMessages(sortedMessages);
+			}
 		} catch (error: any) {
 			console.error("Error fetching messages:", error.message);
 		} finally {
