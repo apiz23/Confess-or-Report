@@ -7,7 +7,7 @@ export default function LogOutButton() {
 		<>
 			<Button
 				onClick={() =>
-					signOut({ callbackUrl: `${window.location.origin}/admin/login` })
+					signOut({ callbackUrl: `${window.location.origin}/login` })
 				}
 				variant="ghost"
 				className="rounded-lg"
