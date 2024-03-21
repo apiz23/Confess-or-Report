@@ -40,18 +40,6 @@ export default function Dashboard() {
 		[]
 	);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			if (status === "authenticated" && session && session.user) {
-				await fetchMessages();
-			} else if (status === "unauthenticated") {
-				redirect(`${window.location.origin}/login`);
-			}
-		};
-
-		fetchData();
-	}, [session, status]);
-
 	const [isFetching, setIsFetching] = useState(false);
 
 	const fetchMessages = async () => {
