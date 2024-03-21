@@ -39,6 +39,19 @@ export default function Dashboard() {
 	const [tempData, setTempData] = useState<{ id: number; verified: boolean }[]>(
 		[]
 	);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			if (status === "authenticated" && session?.user) {
+				await fetchMessages();
+			} else if (status === "unauthenticated") {
+				redirect(`${window.location.origin}/login`);
+			}
+		};
+
+		fetchData();
+	}, [session, status]);
+
 	const [isFetching, setIsFetching] = useState(false);
 
 	const fetchMessages = async () => {
@@ -99,6 +112,9 @@ export default function Dashboard() {
 	const handleRefresh = () => {
 		fetchMessages();
 	};
+	if (status === "loading") {
+		return <div>Loading...</div>;
+	}
 	return (
 		<>
 			<NavbarAdmin session={session} />
